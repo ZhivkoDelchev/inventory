@@ -2,18 +2,24 @@ package com.inventory.server.product;
 
 
 import com.inventory.server.product.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
+
 
 @Service
 public class ProductService {
 
+    @Autowired
+    private ProductRepository productRepository;
+
     public List<Product> getAllProducts() {
-        List<Product> products = Arrays.asList(new Product("Foo", BigDecimal.TEN, "categoryValue", "descriptionValue"));
+
+        List<Product> products = productRepository.findAll();
+
         return products;
     }
-
 }
+
+
