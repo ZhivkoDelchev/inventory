@@ -12,12 +12,18 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -40,16 +46,26 @@ public class ProductRestIntegrationTest {
     @After
     public void tearDown() {
         productRepository.deleteAll();
-        db.shutdown();
     }
 
     @Test
     public void shouldReturnAllPersistedProducts() throws Exception {
-        JSONArray expected = getJsonArray(productFoo, productBar);
+        final JSONArray expected = getJsonArray(productFoo, productBar);
 
-        JSONArray response = new JSONArray(restTemplate.getForObject("/products", String.class));
+        final JSONArray response = new JSONArray(restTemplate.getForObject("/products", String.class));
 
-        JSONAssert.assertEquals(expected, response, false);
+        JSONAssert.assertEquals(expected, response, true);
+    }
+
+    @Test
+    public void shouldPersistNewProduct() throws Exception {
+        final Product newProduct = new Product("baz", BigDecimal.ZERO, "my category", UUID.randomUUID().toString());
+
+        final ResponseEntity<String> result = restTemplate.postForEntity("/products", gerProductAsJsonObject(newProduct).toString(), String.class);
+
+        assertThat(result.getStatusCode(), is(equalTo(200)));
+        final List<Product> persistedProducts = productRepository.findAll();
+        JSONAssert.assertEquals( getJsonArray(productFoo, productBar, newProduct), getJsonArray(persistedProducts.toArray(new Product[0])), false);
     }
 
     private JSONArray getJsonArray(Product... products) throws JSONException {
