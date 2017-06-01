@@ -1,3 +1,4 @@
+
 package com.inventory.server.product;
 
 
@@ -16,10 +17,6 @@ public class ProductService {
 
     public List<Product> getAllProducts() {
 
-        List<Product> products = productRepository.findAll();
-
-        return products;
+        return productRepository.findAll();
     }
 }
-
-
