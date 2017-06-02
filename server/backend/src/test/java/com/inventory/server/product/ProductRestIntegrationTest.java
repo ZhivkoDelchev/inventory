@@ -12,7 +12,7 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -61,9 +61,13 @@ public class ProductRestIntegrationTest {
     public void shouldPersistNewProduct() throws Exception {
         final Product newProduct = new Product("baz", BigDecimal.ZERO, "my category", UUID.randomUUID().toString());
 
-        final ResponseEntity<String> result = restTemplate.postForEntity("/products", gerProductAsJsonObject(newProduct).toString(), String.class);
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        final HttpEntity<String> httpEntity = new HttpEntity<>(gerProductAsJsonObject(newProduct).toString(), headers);
 
-        assertThat(result.getStatusCode(), is(equalTo(200)));
+        final ResponseEntity<String> result = restTemplate.exchange("/products", HttpMethod.POST, httpEntity, String.class);
+
+        assertThat(result.getStatusCode(), is(equalTo(HttpStatus.OK)));
         final List<Product> persistedProducts = productRepository.findAll();
         JSONAssert.assertEquals( getJsonArray(productFoo, productBar, newProduct), getJsonArray(persistedProducts.toArray(new Product[0])), false);
     }
