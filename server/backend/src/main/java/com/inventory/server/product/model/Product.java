@@ -1,9 +1,13 @@
 package com.inventory.server.product.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.aspectj.lang.annotation.Around;
+import org.hibernate.validator.constraints.Range;
+
+import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Entity
@@ -13,12 +17,21 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotNull
+    @Size(max = 60)
     private String name;
 
+    @NotNull
+    @Digits(integer = 10, fraction = 2)
+    //@DecimalMax(value = "10.2")
     private BigDecimal price;
 
+    @NotNull
+    @Size(max = 60)
     private String category;
 
+    @NotNull
+    @Size(max = 255)
     private String description;
 
     public Product(String name, BigDecimal price, String category, String description) {
@@ -81,7 +94,8 @@ public class Product {
 
         if (id != null ? !id.equals(product.id) : product.id != null) return false;
         if (name != null ? !name.equals(product.name) : product.name != null) return false;
-        if (price != null ? (product.price != null && price.compareTo(product.price) != 0) : product.price != null) return false;
+        if (price != null ? (product.price != null && price.compareTo(product.price) != 0) : product.price != null)
+            return false;
         if (category != null ? !category.equals(product.category) : product.category != null) return false;
         return description != null ? description.equals(product.description) : product.description == null;
     }
