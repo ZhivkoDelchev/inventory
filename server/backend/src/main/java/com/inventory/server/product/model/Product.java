@@ -1,37 +1,38 @@
 package com.inventory.server.product.model;
 
-import org.aspectj.lang.annotation.Around;
-import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+
 
 @Entity
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
 
-    @NotNull
-    @Size(max = 60)
+    @NotEmpty
+    @Length(max = 60)
+    @Column(name = "name")
     private String name;
 
-    @NotNull
     @Digits(integer = 10, fraction = 2)
-    //@DecimalMax(value = "10.2")
+    @Column(name = "price")
     private BigDecimal price;
 
-    @NotNull
-    @Size(max = 60)
+    @NotEmpty
+    @Length(max = 60)
+    @Column(name = "category")
     private String category;
 
-    @NotNull
-    @Size(max = 255)
+    @NotEmpty
+    @Length(max = 255)
+    @Column(name = "description")
     private String description;
 
     public Product(String name, BigDecimal price, String category, String description) {

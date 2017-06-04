@@ -3,6 +3,7 @@ package com.inventory.server.product.rest;
 import com.inventory.server.product.ProductService;
 import com.inventory.server.product.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +26,8 @@ public class Controller {
         return productService.getProductById(id);
     }
 
-    @RequestMapping(value = "/products", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<Product> create(@RequestBody Product product) {
+    @RequestMapping(value = "/products", method = RequestMethod.POST)
+    public Product create(@RequestBody Product product) {
         return productService.createProduct(product);
     }
 

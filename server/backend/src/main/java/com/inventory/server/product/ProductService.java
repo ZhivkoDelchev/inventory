@@ -20,7 +20,6 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public List<Product> getAllProducts() {
-
         return productRepository.findAll();
     }
 
@@ -32,10 +31,9 @@ public class ProductService {
         return this.productRepository.findOne(id);
     }
 
-    public ResponseEntity<Product> createProduct(Product product) {
-
+    public Product createProduct(Product product) {
         productRepository.save(product);
-        return new ResponseEntity<>(product, HttpStatus.OK);
+        return product;
     }
 
     public List<Category> listCategories() {
