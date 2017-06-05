@@ -1,6 +1,9 @@
-<ul>
-  <li *ngFor="let product of products">
-    {{product.name}}
-  </li>
-</ul>
+<table>
+  <tr *ngFor="let product of products">
+    <th>{{product.name}}</th>
+    <th>{{product.category}}</th>
+    <th>{{product.description}}</th>
+    <th>{{product.price}}</th>
+  </tr>
+</table>
 <router-outlet></router-outlet>
