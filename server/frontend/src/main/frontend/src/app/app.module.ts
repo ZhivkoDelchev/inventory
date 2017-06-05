@@ -9,11 +9,18 @@ import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './not-found.component';
 import { ProductComponent } from './product.component';
 import { ProductService } from './product.service';
+import { CategoryComponent } from './category/category.component';
+import { CategoryService } from './category/category.service';
 
 const appRoutes: Routes = [
   {
     path: 'products',
     component: ProductComponent,
+    data: { title: 'Products List' }
+  },
+  {
+    path: 'categories',
+    component: CategoryComponent,
     data: { title: 'Products List' }
   },
   {
@@ -29,7 +36,8 @@ const appRoutes: Routes = [
     AppComponent,
     ProductComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    CategoryComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -38,7 +46,10 @@ const appRoutes: Routes = [
     HttpModule,
     JsonpModule
   ],
-  providers: [ProductService],
+  providers: [
+    ProductService,
+    CategoryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

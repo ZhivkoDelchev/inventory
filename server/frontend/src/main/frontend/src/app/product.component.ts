@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import {ProductService} from "./product.service";
+import { ProductService } from "./product.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: 'product.component.html'
 })
+
 export class ProductComponent {
   products = [];
   errorMessage: any;
