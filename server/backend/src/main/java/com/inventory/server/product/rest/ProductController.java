@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-public class Controller {
+public class ProductController {
 
     @Autowired
     private ProductService productService;
