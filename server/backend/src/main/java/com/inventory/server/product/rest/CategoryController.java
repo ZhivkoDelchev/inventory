@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-<<<<<<< HEAD:server/backend/src/main/java/com/inventory/server/product/rest/CategoryController.java
+
 @RequestMapping("/api")
-=======
->>>>>>> refs/heads/categoryController:server/backend/src/main/java/com/inventory/server/product/rest/CategoryController.java
 public class CategoryController {
 
     @Autowired

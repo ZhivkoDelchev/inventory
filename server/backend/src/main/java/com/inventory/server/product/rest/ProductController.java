@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-<<<<<<< HEAD:server/backend/src/main/java/com/inventory/server/product/rest/ProductController.java
+
 @RequestMapping("/api")
-=======
->>>>>>> refs/heads/categoryController:server/backend/src/main/java/com/inventory/server/product/rest/ProductController.java
+
 public class ProductController {
 
     @Autowired
