@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
 
-
 @Entity(name = "product")
 public class Product {
 
