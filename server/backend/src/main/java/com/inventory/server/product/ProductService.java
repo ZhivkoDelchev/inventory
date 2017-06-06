@@ -37,8 +37,6 @@ public class ProductService {
     }
 
     public List<Category> listCategories() {
-        return productRepository.findAll().stream()
-                .map(product -> new Category(product.getCategory()))
-                .collect(Collectors.toList());
+        return productRepository.findCategories();
     }
 }
