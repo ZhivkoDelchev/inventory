@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class CategoryControler {
+public class CategoryController {
 
     @Autowired
-    ProductService productService;
+    private ProductService productService;
 
     @RequestMapping(path = "/categories", method = RequestMethod.GET)
     public List<Category> listCategory() {
