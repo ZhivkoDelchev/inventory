@@ -3,7 +3,7 @@ import { ProductService } from "./product.service";
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'product/product.component.html'
+  templateUrl: './product.component.html'
 })
 
 export class ProductComponent {

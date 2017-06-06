@@ -11,6 +11,7 @@ import { ProductComponent } from './product/product.component';
 import { ProductService } from './product/product.service';
 import { CategoryComponent } from './category/category.component';
 import { CategoryService } from './category/category.service';
+import { HttpErrorHandler } from './http.error.handler';
 
 const appRoutes: Routes = [
   {
@@ -48,7 +49,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     ProductService,
-    CategoryService
+    CategoryService,
+    HttpErrorHandler
   ],
   bootstrap: [AppComponent]
 })
