@@ -4,8 +4,14 @@ import com.inventory.server.product.dto.Category;
 import com.inventory.server.product.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.Set;
+
+>>>>>>> refs/heads/categoryController
 
 @Service
 public class ProductService {
@@ -31,6 +37,20 @@ public class ProductService {
     }
 
     public List<Category> listCategories() {
+<<<<<<< HEAD
         return productRepository.findCategories();
+=======
+        List<Product> products = productRepository.findAll();
+        Set<String> categorySet = new LinkedHashSet<>();
+
+        for (Product product : products) {
+            categorySet.add(product.getCategory());
+        }
+
+        List<Category> categories = new ArrayList<>();
+        categorySet.stream().sorted().forEach(s -> categories.add(new Category(s)));
+
+        return categories;
+>>>>>>> refs/heads/categoryController
     }
 }
