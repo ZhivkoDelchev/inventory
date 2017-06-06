@@ -16,9 +16,6 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @Autowired
-    private CategoryController categoryController;
-
     @RequestMapping(path = "/products", method = RequestMethod.GET)
     public List<Product> getAll() {
         return productService.getAllProducts();
