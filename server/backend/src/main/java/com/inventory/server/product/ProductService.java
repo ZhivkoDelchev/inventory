@@ -1,15 +1,11 @@
-
 package com.inventory.server.product;
 
-
+import com.inventory.server.product.dto.Category;
 import com.inventory.server.product.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 @Service
 public class ProductService {
@@ -18,7 +14,6 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public List<Product> getAllProducts() {
-
         return productRepository.findAll();
     }
 
@@ -30,9 +25,12 @@ public class ProductService {
         return this.productRepository.findOne(id);
     }
 
-    public ResponseEntity<Product> createProduct(Product product) {
-
+    public Product createProduct(Product product) {
         productRepository.save(product);
-        return new ResponseEntity<>(product, HttpStatus.OK);
+        return product;
+    }
+
+    public List<Category> listCategories() {
+        return productRepository.findCategories();
     }
 }

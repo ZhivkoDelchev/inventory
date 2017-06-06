@@ -1,24 +1,37 @@
 package com.inventory.server.product.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
 
-@Entity
+@Entity(name = "product")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
 
+    @NotEmpty
+    @Length(max = 60)
+    @Column(name = "name")
     private String name;
 
+    @Digits(integer = 10, fraction = 2)
+    @Column(name = "price")
     private BigDecimal price;
 
+    @NotEmpty
+    @Length(max = 60)
+    @Column(name = "category")
     private String category;
 
+    @NotEmpty
+    @Length(max = 255)
+    @Column(name = "description")
     private String description;
 
     public Product(String name, BigDecimal price, String category, String description) {
@@ -81,7 +94,8 @@ public class Product {
 
         if (id != null ? !id.equals(product.id) : product.id != null) return false;
         if (name != null ? !name.equals(product.name) : product.name != null) return false;
-        if (price != null ? (product.price != null && price.compareTo(product.price) != 0) : product.price != null) return false;
+        if (price != null ? (product.price != null && price.compareTo(product.price) != 0) : product.price != null)
+            return false;
         if (category != null ? !category.equals(product.category) : product.category != null) return false;
         return description != null ? description.equals(product.description) : product.description == null;
     }

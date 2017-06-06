@@ -32,7 +32,6 @@ public class ProductRestIntegrationTest {
     @Autowired private EmbeddedDatabase db;
     @Autowired private ProductRepository productRepository;
     @Autowired private TestRestTemplate restTemplate;
-    @Autowired private ProductService sut;
 
     private Product productFoo;
     private Product productBar;
