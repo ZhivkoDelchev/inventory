@@ -33,14 +33,14 @@ public class CategoryIntegrationTest {
         productRepository.save(new Product("foo", BigDecimal.ONE, "my category", UUID.randomUUID().toString()));
         productRepository.save(new Product("foo", BigDecimal.ONE, "my category 2", UUID.randomUUID().toString()));
 
-        final JSONArray response = new JSONArray(restTemplate.getForObject("/categories", String.class));
+        final JSONArray response = new JSONArray(restTemplate.getForObject("/api/categories", String.class));
 
         JSONAssert.assertEquals("[{\"name\":\"my category\"}, {\"name\":\"my category 2\"}]", response, true);
     }
 
     @Test
     public void shouldReturnEmptyListIfNoProductsAreAvailable() throws Exception {
-        final JSONArray response = new JSONArray(restTemplate.getForObject("/categories", String.class));
+        final JSONArray response = new JSONArray(restTemplate.getForObject("/api/categories", String.class));
 
         JSONAssert.assertEquals("[]", response, true);
     }
@@ -50,7 +50,7 @@ public class CategoryIntegrationTest {
         productRepository.save(new Product("foo", BigDecimal.ONE, "my category", UUID.randomUUID().toString()));
         productRepository.save(new Product("foo", BigDecimal.ONE, "my category", UUID.randomUUID().toString()));
 
-        final JSONArray response = new JSONArray(restTemplate.getForObject("/categories", String.class));
+        final JSONArray response = new JSONArray(restTemplate.getForObject("/api/categories", String.class));
 
         JSONAssert.assertEquals("[{\"name\":\"my category\"}]", response, true);
     }

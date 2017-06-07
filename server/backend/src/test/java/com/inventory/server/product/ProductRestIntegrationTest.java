@@ -51,7 +51,7 @@ public class ProductRestIntegrationTest {
     public void shouldReturnAllPersistedProducts() throws Exception {
         final JSONArray expected = getJsonArray(productFoo, productBar);
 
-        final JSONArray response = new JSONArray(restTemplate.getForObject("/products", String.class));
+        final JSONArray response = new JSONArray(restTemplate.getForObject("/api/products", String.class));
 
         JSONAssert.assertEquals(expected, response, true);
     }
@@ -64,7 +64,7 @@ public class ProductRestIntegrationTest {
         headers.setContentType(MediaType.APPLICATION_JSON);
         final HttpEntity<String> httpEntity = new HttpEntity<>(gerProductAsJsonObject(newProduct).toString(), headers);
 
-        final ResponseEntity<String> result = restTemplate.exchange("/products", HttpMethod.POST, httpEntity, String.class);
+        final ResponseEntity<String> result = restTemplate.exchange("/api/products", HttpMethod.POST, httpEntity, String.class);
 
         assertThat(result.getStatusCode(), is(equalTo(HttpStatus.OK)));
         final List<Product> persistedProducts = productRepository.findAll();
