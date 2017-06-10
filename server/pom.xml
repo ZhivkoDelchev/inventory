@@ -24,5 +24,6 @@
 	<modules>
         <module>frontend</module>
         <module>backend</module>
+        <module>persistence</module>
     </modules>
 </project>

@@ -1,4 +1,4 @@
-package com.inventory.server.product.dto;
+package com.inventory.server.persistence.dto;
 
 public interface Category {
     String getName();

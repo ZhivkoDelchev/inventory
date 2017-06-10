@@ -1,6 +1,7 @@
 package com.inventory.server.product;
 
-import com.inventory.server.product.model.Product;
+import com.inventory.server.persistence.model.Product;
+import com.inventory.server.persistence.repository.ProductRepository;
 import org.json.JSONArray;
 import org.junit.After;
 import org.junit.Test;

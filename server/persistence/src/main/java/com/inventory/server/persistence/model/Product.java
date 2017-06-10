@@ -1,4 +1,4 @@
-package com.inventory.server.product.model;
+package com.inventory.server.persistence.model;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;

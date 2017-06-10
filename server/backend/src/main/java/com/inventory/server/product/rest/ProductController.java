@@ -1,7 +1,7 @@
 package com.inventory.server.product.rest;
 
 import com.inventory.server.product.ProductService;
-import com.inventory.server.product.model.Product;
+import com.inventory.server.persistence.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

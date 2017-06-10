@@ -1,7 +1,7 @@
 package com.inventory.server.product.rest;
 
 import com.inventory.server.product.ProductService;
-import com.inventory.server.product.dto.Category;
+import com.inventory.server.persistence.dto.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
