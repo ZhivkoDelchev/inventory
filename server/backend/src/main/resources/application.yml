@@ -1,10 +1,10 @@
 spring:
     datasource:
-        url: jdbc:mysql://localhost:3306/inventory
+        url: jdbc:mysql://localhost:3306/inventory_dev
         username: root
         password:
     jpa:
         hibernate:
-            ddl-auto: update
+            ddl-auto: validate
         show-sql: false
         properties.hibernate.format_sql: true
