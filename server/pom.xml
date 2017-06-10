@@ -22,8 +22,8 @@
     </parent>
 	
 	<modules>
-        <module>frontend</module>
-        <module>backend</module>
+        <module>web-ui</module>
+        <module>web-api</module>
         <module>persistence</module>
     </modules>
 </project>

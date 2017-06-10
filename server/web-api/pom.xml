@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>backend</artifactId>
-    <name>backend</name>
+    <artifactId>web-api</artifactId>
+    <name>web-api</name>
 
     <properties>
         <java.version>1.8</java.version>
@@ -31,7 +31,7 @@
 
         <dependency>
             <groupId>com.inventory.server</groupId>
-            <artifactId>frontend</artifactId>
+            <artifactId>web-ui</artifactId>
             <version>${project.version}</version>
             <scope>runtime</scope>
         </dependency>
