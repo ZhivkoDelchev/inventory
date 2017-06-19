@@ -1,9 +1,10 @@
 <table>
-  <tr *ngFor="let product of products">
+  <tr *ngFor="let product of products | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total }">
     <th>{{product.name}}</th>
     <th>{{product.category}}</th>
     <th>{{product.description}}</th>
     <th>{{product.price}}</th>
   </tr>
 </table>
+<pagination-controls (pageChange)="getProducts(page = $event)"></pagination-controls>
 <router-outlet></router-outlet>

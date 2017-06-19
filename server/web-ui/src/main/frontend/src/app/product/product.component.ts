@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { ProductService } from "./product.service";
+import {Component} from '@angular/core';
+import {ProductService} from "./product.service";
+import {Product} from "./product";
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,21 @@ import { ProductService } from "./product.service";
 })
 
 export class ProductComponent {
-  products = [];
+  products: Product[];
+  total: number;
   errorMessage: any;
 
-  constructor (productService: ProductService) {
-    productService.getProducts()
-      .subscribe(products => this.products = products,
-        error =>  this.errorMessage = <any>error);
+  constructor(private productService: ProductService) {
+    this.getProducts(1);
   }
 
+  getProducts(page: number) {
+    this.productService.getProducts(page)
+      .subscribe(response => {
+          this.total = response.total;
+          this.products = response.data;
+        },
+        error => this.errorMessage = <any>error
+      );
+  }
 }

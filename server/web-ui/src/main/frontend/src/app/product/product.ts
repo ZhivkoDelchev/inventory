@@ -3,3 +3,8 @@ export class Product {
 
   }
 }
+
+export class PagedProducts {
+  total: number;
+  data: Product[];
+}
