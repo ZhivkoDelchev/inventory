@@ -1,4 +1,4 @@
-package com.inventory.server.product;
+package com.inventory.server.product.repository;
 
 import com.inventory.server.product.dto.Category;
 import com.inventory.server.product.model.Product;

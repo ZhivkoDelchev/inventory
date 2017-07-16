@@ -1,6 +1,7 @@
 package com.inventory.server.product;
 
 import com.inventory.server.product.model.Product;
+import com.inventory.server.product.repository.ProductRepository;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
