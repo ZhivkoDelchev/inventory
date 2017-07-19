@@ -11,13 +11,20 @@ import {HttpErrorHandler} from "../http.error.handler";
 @Injectable()
 export class ProductService {
 
-  private productsUrl = 'api/products ';
+  private productsUrl = 'api/products';
+  private productDetailsUrl = 'api/product/';
 
   constructor(private http: Http, private httpErrorHandler: HttpErrorHandler) {
   }
 
   getProducts(): Observable<Product[]> {
     return this.http.get(this.productsUrl)
+      .map(this.extractData)
+      .catch(this.httpErrorHandler.handleError);
+  }
+
+  getProduct(id): Observable<Product> {
+    return this.http.get(this.productDetailsUrl + id)
       .map(this.extractData)
       .catch(this.httpErrorHandler.handleError);
   }

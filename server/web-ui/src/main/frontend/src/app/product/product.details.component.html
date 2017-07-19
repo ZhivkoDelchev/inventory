@@ -1,9 +1,15 @@
 <table>
-  <tr *ngFor="let product of products" routerLink="/product-details/{{product.id}}">
+  <tr>
     <th>{{product.name}}</th>
+    <th>{{product.id}}</th>
     <th>{{product.category}}</th>
     <th>{{product.description}}</th>
     <th>{{product.price}}</th>
+  </tr>
+</table>
+<table *ngFor="let pictureId of product.pictures">
+  <tr>
+    <th><img src="/api/images/{{pictureId}}"></th>
   </tr>
 </table>
 <router-outlet></router-outlet>

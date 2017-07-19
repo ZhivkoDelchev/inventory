@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './not-found.component';
 import { ProductsComponent } from './product/products.component';
+import { ProductDetailsComponent } from './product/product.details.component';
 import { ProductService } from './product/product.service';
 import { CategoryComponent } from './category/category.component';
 import { CategoryService } from './category/category.service';
@@ -19,6 +20,12 @@ const appRoutes: Routes = [
     component: ProductsComponent,
     data: { title: 'Products List' }
   },
+  {
+    path: 'product-details/:id',
+    component: ProductDetailsComponent,
+    data: {
+      title: 'Product'
+    }},
   {
     path: 'categories',
     component: CategoryComponent,
@@ -36,6 +43,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     ProductsComponent,
+    ProductDetailsComponent,
     PageNotFoundComponent,
     HomeComponent,
     CategoryComponent
