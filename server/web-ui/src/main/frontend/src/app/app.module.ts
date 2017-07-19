@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './not-found.component';
-import { ProductComponent } from './product/product.component';
+import { ProductsComponent } from './product/products.component';
 import { ProductService } from './product/product.service';
 import { CategoryComponent } from './category/category.component';
 import { CategoryService } from './category/category.service';
@@ -16,7 +16,7 @@ import { HttpErrorHandler } from './http.error.handler';
 const appRoutes: Routes = [
   {
     path: 'products',
-    component: ProductComponent,
+    component: ProductsComponent,
     data: { title: 'Products List' }
   },
   {
@@ -29,13 +29,13 @@ const appRoutes: Routes = [
     component: HomeComponent,
     pathMatch: 'full'
   },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
+    ProductsComponent,
     PageNotFoundComponent,
     HomeComponent,
     CategoryComponent
