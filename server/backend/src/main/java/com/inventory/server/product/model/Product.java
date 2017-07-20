@@ -6,8 +6,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
+import java.util.List;
 
-@Entity(name = "product")
+
+@Entity
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -33,6 +36,9 @@ public class Product {
     @Length(max = 255)
     @Column(name = "description")
     private String description;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+    private List<Picture> picture;
 
     public Product(String name, BigDecimal price, String category, String description) {
         this();
@@ -83,6 +89,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Picture> getPicture() {
+        return this.picture;
+    }
+
+    public void setPicture(List<Picture> picture) {
+        this.picture = picture;
     }
 
     @Override

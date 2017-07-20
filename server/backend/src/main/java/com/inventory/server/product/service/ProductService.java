@@ -1,8 +1,8 @@
 package com.inventory.server.product.service;
 
-import com.inventory.server.product.repository.ProductRepository;
 import com.inventory.server.product.dto.Category;
 import com.inventory.server.product.model.Product;
+import com.inventory.server.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
