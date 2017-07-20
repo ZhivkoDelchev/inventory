@@ -13,6 +13,7 @@ import { ProductService } from './product/product.service';
 import { CategoryComponent } from './category/category.component';
 import { CategoryService } from './category/category.service';
 import { HttpErrorHandler } from './http.error.handler';
+import { ImageUploadModule } from 'angular2-image-upload/lib/image-upload.module';
 
 const appRoutes: Routes = [
   {
@@ -53,7 +54,8 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    JsonpModule
+    JsonpModule,
+    ImageUploadModule.forRoot(),
   ],
   providers: [
     ProductService,
