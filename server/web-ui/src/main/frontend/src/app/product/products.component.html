@@ -1,5 +1,5 @@
 <table>
-  <tr *ngFor="let product of products">
+  <tr *ngFor="let product of products" routerLink="/product-details/{{product.id}}">
     <th>{{product.name}}</th>
     <th>{{product.category}}</th>
     <th>{{product.description}}</th>
