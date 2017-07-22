@@ -15,7 +15,7 @@ public class Picture {
     private Integer id;
 
     @NotEmpty
-    @Column(name = "data")
+    @Column(name = "data", columnDefinition = "MEDIUMBLOB")
     private byte[] pictureData;
 
     @NotNull
