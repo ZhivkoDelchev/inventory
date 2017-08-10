@@ -12,7 +12,7 @@ import {HttpErrorHandler} from "../http.error.handler";
 export class ProductService {
 
   private productsUrl = 'api/products';
-  private productDetailsUrl = 'api/product/';
+  private productDetailsUrl = 'api/products/';
 
   constructor(private http: Http, private httpErrorHandler: HttpErrorHandler) {
   }

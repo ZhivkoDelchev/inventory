@@ -39,6 +39,13 @@ public class PictureService {
         return picture;
     }
 
+    public Picture createPicture(byte[] picturesData, Integer id) throws IOException {
+        Picture picture = new Picture(picturesData, productRepository.findOne(id));
+        picturesRepository.save(picture);
+
+        return picture;
+    }
+
     public byte[] getPictureData(Integer id) {
         return picturesRepository.findOne(id).getPictureData();
     }
