@@ -37,7 +37,7 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "product")
     private List<Picture> picture;
 
     public Product(String name, BigDecimal price, String category, String description) {

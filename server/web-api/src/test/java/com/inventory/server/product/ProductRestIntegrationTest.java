@@ -1,6 +1,9 @@
 package com.inventory.server.product;
 
+import com.google.common.io.ByteStreams;
+import com.inventory.server.persistence.model.Picture;
 import com.inventory.server.persistence.model.Product;
+import com.inventory.server.persistence.repository.PictureRepository;
 import com.inventory.server.persistence.repository.ProductRepository;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,6 +20,7 @@ import org.springframework.http.*;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,6 +37,7 @@ public class ProductRestIntegrationTest {
 
     @Autowired private EmbeddedDatabase db;
     @Autowired private ProductRepository productRepository;
+    @Autowired private PictureRepository pictureRepository;
     @Autowired private TestRestTemplate restTemplate;
 
     private Product productFoo;
@@ -47,6 +52,7 @@ public class ProductRestIntegrationTest {
     @After
     public void tearDown() {
         productRepository.deleteAll();
+        pictureRepository.deleteAll();
     }
 
     @Test
@@ -73,6 +79,20 @@ public class ProductRestIntegrationTest {
         JSONAssert.assertEquals( getJsonArray(productFoo, productBar, newProduct), getJsonArray(persistedProducts.toArray(new Product[0])), false);
     }
 
+    @Test
+    public void shouldReturnProductWithImage() throws Exception {
+        final InputStream pictureStream = getClass().getClassLoader().getResourceAsStream("test_image.png");
+        final byte[] pictureData = ByteStreams.toByteArray(pictureStream);
+        pictureRepository.save(new Picture(pictureData, productFoo));
+
+        final List<Product> productList = productRepository.findAll();
+        final JSONArray expected = getJsonArray(productList.toArray(new Product[productList.size()]));
+
+        final JSONArray response = new JSONArray(restTemplate.getForObject("/api/products", String.class));
+
+        JSONAssert.assertEquals(expected, response, true);
+    }
+
     private JSONArray getJsonArray(Product... products) throws JSONException {
         final JSONArray jsonArray = new JSONArray();
         Arrays.stream(products).map(this::gerProductAsJsonObject).forEach(jsonArray::put);
@@ -87,8 +107,25 @@ public class ProductRestIntegrationTest {
             jsonObject.put("description", product.getDescription());
             jsonObject.put("name", product.getName());
             jsonObject.put("price", product.getPrice());
-            jsonObject.put("picture", new JSONArray());
+            jsonObject.put("picture", getPicturesAsJsonArray(product.getPicture()));
 
+            return jsonObject;
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private JSONArray getPicturesAsJsonArray(List<Picture> pictures) {
+        final JSONArray picturesArray = new JSONArray();
+        if (pictures != null) {
+            pictures.forEach(picture -> picturesArray.put(getPictureAsJsonObject(picture)));
+        }
+        return picturesArray;
+    }
+
+    private JSONObject getPictureAsJsonObject(Picture picture) {
+        try {
+            final JSONObject jsonObject = new JSONObject();
+            jsonObject.put("id", picture.getId());
             return jsonObject;
         } catch (JSONException e) {
             throw new RuntimeException(e);
