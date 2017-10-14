@@ -17,13 +17,11 @@ public class Picture {
 
     @NotEmpty
     @Column(name = "data", columnDefinition = "MEDIUMBLOB")
-    @JsonIgnore
     private byte[] pictureData;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product", nullable = false)
-    @JsonIgnore
     private Product product;
 
     public Picture(byte[] pictureData, Product product) {
@@ -42,6 +40,7 @@ public class Picture {
         this.id = id;
     }
 
+    @JsonIgnore
     public byte[] getPictureData() {
         return this.pictureData;
     }
@@ -50,6 +49,7 @@ public class Picture {
         this.pictureData = pictureData;
     }
 
+    @JsonIgnore
     public Product getProduct() {
         return this.product;
     }
