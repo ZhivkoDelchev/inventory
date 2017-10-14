@@ -1,4 +1,4 @@
-package com.inventory.server.product;
+package com.inventory.server.product.service;
 
 import com.inventory.server.persistence.dto.Category;
 import com.inventory.server.persistence.model.Product;

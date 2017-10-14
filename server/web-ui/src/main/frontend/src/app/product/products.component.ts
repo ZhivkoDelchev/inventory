@@ -3,10 +3,10 @@ import { ProductService } from "./product.service";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './product.component.html'
+  templateUrl: './products.component.html'
 })
 
-export class ProductComponent {
+export class ProductsComponent {
   products = [];
   errorMessage: any;
 
