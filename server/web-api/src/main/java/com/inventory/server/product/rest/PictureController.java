@@ -36,9 +36,9 @@ public class PictureController {
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(pictures);
     }
 
-    @RequestMapping(path = "/pictures/delete", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/pictures/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public HttpStatus deletePicture(Integer id) throws Exception {
+    public HttpStatus deletePicture(@PathVariable("id") Integer id) throws Exception {
         pictureService.deletePicture(id);
         return HttpStatus.OK;
     }
