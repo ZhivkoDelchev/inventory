@@ -1,5 +1,5 @@
 <table>
-  <tr *ngFor="let product of products | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total }">
+  <tr *ngFor="let product of products" routerLink="/product-details/{{product.id}}  | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total }">
     <th>{{product.name}}</th>
     <th>{{product.category}}</th>
     <th>{{product.description}}</th>

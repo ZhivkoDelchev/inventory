@@ -10,12 +10,19 @@ import {HttpErrorHandler} from "../http.error.handler";
 export class ProductService {
 
   private productsUrl = 'api/products/page/';
+  private productDetailsUrl = 'api/products/';
 
   constructor(private http: Http, private httpErrorHandler: HttpErrorHandler) {
   }
 
   getProducts(page: number): Observable<PagedProducts> {
     return this.http.get(this.productsUrl + page)
+      .map(this.extractData)
+      .catch(this.httpErrorHandler.handleError);
+  }
+
+  getProduct(id): Observable<PagedProducts> {
+    return this.http.get(this.productDetailsUrl + id)
       .map(this.extractData)
       .catch(this.httpErrorHandler.handleError);
   }
