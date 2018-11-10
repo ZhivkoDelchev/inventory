@@ -1,0 +1,26 @@
+version: "3"
+services:
+  inventory-mysql:
+    image: mysql:5.7.24
+    container_name: inventory-mysql
+    hostname: mysql
+    ports:
+      # exposing the port for developers
+      - "43306:3306"
+    environment:
+      MYSQL_DATABASE: "inventory_dev"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "YES"
+    volumes:
+      - ./containers/inventory-mysql/persistence:/var/lib/mysql
+  inventory-web:
+    build: ./
+    image: inventory:latest
+    container_name: inventory-web
+    deploy:
+      replicas: 1
+    ports:
+      - "48080:8080"
+    links:
+      - inventory-mysql:mysql
+    volumes:
+      - ./containers/inventory-web/contribution:/mnt/contribution/
