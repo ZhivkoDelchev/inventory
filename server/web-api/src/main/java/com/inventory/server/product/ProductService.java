@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -19,12 +20,12 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product getProductById(Integer id) throws Exception {
-        if (!this.productRepository.exists(id)) {
+    public Optional<Product> getProductById(Integer id) throws Exception {
+        if (!this.productRepository.existsById(id)) {
             throw new Exception("Product with this ID not exist.");
         }
 
-        return this.productRepository.findOne(id);
+        return this.productRepository.findById(id);
     }
 
     public Product createProduct(Product product) {

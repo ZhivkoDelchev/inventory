@@ -11,4 +11,5 @@ while ! nc "mysql" "3306" >/dev/null 2>&1 < /dev/null; do
 done
 echo "mysql connection established"
 
-/usr/bin/java -jar /mnt/contribution/web-api.jar
+cd /mnt/contribution/
+/usr/bin/java -jar web-api.jar

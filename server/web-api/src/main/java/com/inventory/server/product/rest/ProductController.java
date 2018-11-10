@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 
@@ -23,7 +24,8 @@ public class ProductController {
 
     @RequestMapping(path = "product/{id}", method = RequestMethod.GET)
     public Product getProduct(@PathVariable Integer id) throws Exception {
-        return productService.getProductById(id);
+        Optional<Product> product = productService.getProductById(id);
+        return product.orElseThrow(() -> new RuntimeException("product not found"));
     }
 
     @RequestMapping(value = "/products", method = RequestMethod.POST)
