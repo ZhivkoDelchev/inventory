@@ -1,5 +1,5 @@
-#FROM openjdk:8-jdk
-FROM java:openjdk-9
+#FROM java:openjdk-9
+FROM openjdk:10-jre-slim
 
 RUN apt-get update && apt-get install -y netcat
 
