@@ -12,4 +12,4 @@ done
 echo "mysql connection established"
 
 cd /mnt/contribution/
-/usr/bin/java -jar web-api.jar
+/usr/bin/java --add-opens java.base/java.lang=ALL-UNNAMED -jar web-api.jar
